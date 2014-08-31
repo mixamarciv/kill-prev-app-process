@@ -6,7 +6,7 @@ kills the previous process of this application
 ## Install
 
 ```
-git clone https://github.com/mixamarciv/mixa_std_js_functions.git
+git clone https://github.com/mixamarciv/kill-prev-app-process.git
 ```
 
 ## Usage
