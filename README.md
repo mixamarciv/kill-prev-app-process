@@ -6,7 +6,7 @@ kills the previous process of this application
 ## Install
 
 ```
-npm install kill-prev-process-app
+git clone https://github.com/mixamarciv/mixa_std_js_functions.git
 ```
 
 ## Usage
