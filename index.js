@@ -28,12 +28,13 @@ module.exports = function (options,fn_callback) {
     if(typeof options === 'string') options = {path:options};
     if(!options.path) options.path = path.join( os.tmpdir(), 'nodejs__kill-prev-app-process/pid');
     
-    //console.log("options.path=="+options.path);
+    console.log("options.path=="+options.path);
     check_directory( options.path, function( err, dir_was_exists){
         if(err) throw(err);
         if(!dir_was_exists){
             return save_new_pid_file( options.path, fn_callback);
         }
+        
         
         fs.readdir( options.path, function( err, list_pids ){
             if (list_pids.length == 0) {
