@@ -4,7 +4,6 @@
   "description": "kills the previous process of this application",
   "main": "index.js",
   "dependencies": {
-     "mkdirp": ">=0.3.5"
   },
   "files": [
     "index.js"

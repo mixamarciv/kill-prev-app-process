@@ -14,7 +14,7 @@
 var path = require('path');
 var os = require('os');
 var fs = require('fs');
-var mkdirp = require('mkdirp');
+
 
 module.exports = function (options,fn_callback) {
     if (!fn_callback) {
@@ -61,7 +61,7 @@ module.exports = function (options,fn_callback) {
 function check_directory(path,fn) {
     fs.exists( path, function (exists) {
         if (!exists) {
-            mkdirp( path, function (err) {
+            mkdir_path( path, function (err) {
                 if (err) {
                     var msg = "can't create path:\n  "+path;
                     console.log(msg);
@@ -105,4 +105,26 @@ function kill_process( pid, fn) {
     });
 }
 
-
+function mkdir_path(path_n,fn){
+  fs.exists(path_n,function(exists){
+      if(!exists){
+	  fs.mkdir(path_n, function(err){
+	      if(err){
+		if(err.code=="ENOENT"){
+		    var parent_dir = path.dirname(path_n);
+		    if (parent_dir == path_n) return fn(err);
+		    mkdir_path(parent_dir,function(){
+			mkdir_path(path_n,fn);
+		    });
+		}else{
+		    return fn(err);
+		}
+	      }else{
+		fn();
+	      }
+	  });
+      }else{
+	  fn();
+      }
+  });
+}
