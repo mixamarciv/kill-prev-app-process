@@ -21,8 +21,16 @@ module.exports = function (options,fn_callback) {
         fn_callback = options;
     }
     if (!fn_callback || typeof fn_callback !== 'function' ) {
-        throw("ERROR: one param must be a function");
+        fn_callback = function () {};
     }
+    if (typeof options.wait ==  'number') {
+        var tfn = fn_callback;
+        fn_callback = function () {
+            console.log('  wait: '+options.wait+'ms');
+            setTimeout(tfn,options.wait);
+        }
+    }
+
     
     options = options || {};
     if(typeof options === 'string') options = {path:options};
