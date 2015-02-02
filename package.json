@@ -1,5 +1,5 @@
 {
-  "name": "kill-prev-process-app",
+  "name": "kill-prev-app-process",
   "version": "1.0.0",
   "description": "kills the previous process of this application",
   "main": "index.js",
